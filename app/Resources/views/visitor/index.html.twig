@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Visitors list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Ip</th>
+                <th>Agent</th>
+                <th>Url</th>
+                <th>Date</th>
+                <th>Count</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for visitor in visitors %}
+            <tr>
+                <td><a href="{{ path('visitor_show', { 'id': visitor.id }) }}">{{ visitor.id }}</a></td>
+                <td>{{ visitor.ip }}</td>
+                <td>{{ visitor.agent }}</td>
+                <td>{{ visitor.url }}</td>
+                <td>{% if visitor.date %}{{ visitor.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ visitor.count }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('visitor_show', { 'id': visitor.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('visitor_edit', { 'id': visitor.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('visitor_new') }}">Create a new visitor</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div id="wrapper">
+        <div id="container">
+            <div id="welcome">
+                <h1><span>There you can see image and your information</span></h1>
+            </div>
+            <div class="tst-left">
+                <img class="tst-img" id="banner" src="/banner.php">
+            </div>
+            <div class="tst-right">
+                <p>Your ip - {{ visitor.ip }}</p>
+                <p>Your user-agent - {{ visitor.agent }}</p>
+                <p>Your url - {{ visitor.url }}</p>
+                <p>You last visited  - {{ visitor.date|date("c") }}</p>
+                <p>You visited - <span id="count">{{ visitor.count }}</span> times</p>
+            </div>
+        </div>
+        <div id="visitor" class="hidden">{{ serialized_visitor|raw }}</div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('bundles/app/css/style.css') }}"/>
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('bundles/app/js/tst.js') }}"></script>
+{% endblock %}
